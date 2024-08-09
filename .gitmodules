@@ -1,0 +1,3 @@
+[submodule "lib/OpenZeppelin/ethernaut"]
+	path = lib/OpenZeppelin/ethernaut
+	url = https://github.com/OpenZeppelin/ethernaut.git
