@@ -6,8 +6,8 @@
 git clone https://github.com/PurrProof/ethernaut-solved.git
 cd ethernaut-solved
 git submodule update --init
-pnpm i
-pnpm test
+cp .env.example .env
+pnpm it
 ```
 
 ## Solutions
