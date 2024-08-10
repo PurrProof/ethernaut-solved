@@ -12,6 +12,11 @@ pnpm test
 
 ## Solutions
 
+### Instance
+
+- perform list of view/pure functions calls
+- submit read password to authenticate() function
+
 ### Fallback
 
 - call levelInstance().contribute({value:1})

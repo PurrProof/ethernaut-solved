@@ -3,7 +3,8 @@ import { expect } from "chai";
 import hre from "hardhat";
 
 import { Fallback, FallbackFactory, FallbackFactory__factory, Fallback__factory } from "../typechain-types";
-import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./_fixtures";
+import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
+import { completeLevel } from "./helpers";
 
 describe("Fallback level", function () {
   let context: FixtureContext;
@@ -50,13 +51,7 @@ describe("Fallback level", function () {
       instanceBalanceBefore + playerBalanceBefore - rcptWithdraw.gasUsed * rcptWithdraw.gasPrice,
     );
 
-    // submit instance, check LevelCompleted event
-    const rcptSubmit = await (
-      await context.ethernaut.connect(context.player).submitLevelInstance(level.instance)
-    ).wait();
-    await expect(rcptSubmit)
-      .to.emit(context.ethernaut, "LevelCompletedLog")
-      .withArgs(context.player, level.instance, level.factory);
+    await completeLevel(context, level);
 
     // ensure that there is no failed submission
     expect(await context.statistics.getNoOfFailedSubmissionsForLevel(level.factory)).to.be.equal(0);
