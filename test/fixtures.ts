@@ -45,14 +45,16 @@ export async function deployLevel<
 ): Promise<FixtureLevel<TLevel, TInstance>> {
   // deploy level
   const levelFactory__factory = new LevelFactory(context.owner);
-  const levelFactory = (await levelFactory__factory.deploy()) as TLevel;
+  const levelFactory = (await levelFactory__factory.connect(context.owner).deploy()) as TLevel;
   await levelFactory.waitForDeployment();
 
   // register level in the ethernaut
   await (await context.ethernaut.connect(context.owner).registerLevel(levelFactory)).wait();
 
   // create an instance and get its address
-  const tx = await context.ethernaut.connect(context.player).createLevelInstance(levelFactory);
+  const tx = await context.ethernaut
+    .connect(context.player)
+    .createLevelInstance(levelFactory, { value: hre.ethers.parseUnits("0.001", "ether") });
   const receipt = await tx.wait();
   if (!receipt?.logs || receipt.logs.length === 0) {
     expect.fail("Transaction receipt logs are empty. Instance creation might have failed.");
