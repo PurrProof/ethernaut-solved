@@ -27,3 +27,9 @@ pnpm it
 
 - attacker contract should have no payable receive/fallback functions
 - send prize + 1 value from attacker contract to target contract
+
+### 11. Reentrance
+
+- in single tx: donate amount, withdraw amount, re-enter target in receive() and withdraw(1), causing underflow of
+  attacker balance in mapping
+- deplete target balance in same(or another) tx by calling target.withdraw(target.balance)

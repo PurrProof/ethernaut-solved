@@ -5,7 +5,7 @@ import { Instance, InstanceFactory, InstanceFactory__factory, Instance__factory 
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("Instance level", function () {
+describe("0. Instance level", function () {
   let context: FixtureContext;
   let level: FixtureLevel<InstanceFactory, Instance>;
 

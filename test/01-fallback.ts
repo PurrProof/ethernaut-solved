@@ -6,7 +6,7 @@ import { Fallback, FallbackFactory, FallbackFactory__factory, Fallback__factory 
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("Fallback level", function () {
+describe("1. Fallback level", function () {
   let context: FixtureContext;
   let level: FixtureLevel<FallbackFactory, Fallback>;
 

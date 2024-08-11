@@ -6,7 +6,7 @@ import { MyKingAttack, MyKingAttack__factory } from "../typechain-types";
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("King level", function () {
+describe("10. King level", function () {
   let context: FixtureContext;
   let level: FixtureLevel<KingFactory, King>;
 
