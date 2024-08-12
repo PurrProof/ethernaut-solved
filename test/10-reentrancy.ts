@@ -7,7 +7,7 @@ import { MyReentrancyAttack, MyReentrancyAttack__factory } from "../typechain-ty
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("11. Reentrance level", function () {
+describe("10. Reentrance level", function () {
   let context: FixtureContext;
   let level: FixtureLevel<ReentranceFactory, Reentrance>;
 
