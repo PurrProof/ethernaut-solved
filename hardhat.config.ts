@@ -1,6 +1,7 @@
 import "@nomicfoundation/hardhat-toolbox";
 import "dotenv/config";
 import "hardhat-contract-sizer";
+import "hardhat-gas-reporter";
 import { HardhatUserConfig } from "hardhat/config";
 
 const config: HardhatUserConfig = {
@@ -32,6 +33,9 @@ const config: HardhatUserConfig = {
       gas: 5_000_000,
       gasPrice: 10_000_000_000, //10gwei
     },
+  },
+  gasReporter: {
+    enabled: false,
   },
 };
 
