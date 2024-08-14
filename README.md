@@ -27,6 +27,11 @@ pnpm it
 
 - to claim ownership, just call instance.Fallout() function (which is not a contstructor)
 
+### 3. CoinFlip. [Level](https://ethernaut.openzeppelin.com/level/3), solution: [contract](contracts/MyCoinFlipAttack.sol), [test](test/03-coinflip.ts)
+
+- repeat coin flip logic in the attacker contract
+- make 10 guesses, one per block
+
 ### 9. King. [Level](https://ethernaut.openzeppelin.com/level/9), solution: [contract](contracts/MyKingAttack.sol), [test](test/09-king.ts)
 
 - attacker contract should have no payable receive/fallback functions
