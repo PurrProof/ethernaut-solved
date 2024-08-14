@@ -63,4 +63,9 @@ pnpm it
 - it's just as simple as `token.connect(player).approve(other, totalAmount)`, then
   `token.connect(other).transferFrom(player, other. totalAmount)`
 
+### 16. Preservation. [Level](https://ethernaut.openzeppelin.com/level/16), [solution](contracts/MyPreservationAttack.sol).
+
+- call second library, it will overwrite 0th slot in storage with address of fake library
+- call first library, faked by us: it will overwrite slots 0-2 in storage, where slot #2 contains owner address
+
 ### Other levels on the way...
