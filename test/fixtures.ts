@@ -60,7 +60,9 @@ export async function deployLevel<
     expect.fail("Transaction receipt logs are empty. Instance creation might have failed.");
   }
 
-  const instanceAddress: string = (receipt.logs[0] as EventLog).args[1] as string;
+  // we need LevelInstanceCreatedLog, it goes last
+  const logIndex = receipt.logs.length - 1;
+  const instanceAddress: string = (receipt.logs[logIndex] as EventLog).args[1] as string;
 
   // verify instance creation event
   await expect(receipt)

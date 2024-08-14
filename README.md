@@ -57,3 +57,10 @@ pnpm it
 - victim.enter(...) function should be called in attacker constructor; this way victim.extcodesize(attacker) will be
   still zero
 - the idea behind \_gateKey construction is that val XOR (NOT val) => all bits set
+
+### 15. Naught Coint. [Level](https://ethernaut.openzeppelin.com/level/15), [solution](test/15-naughtcoin.ts).
+
+- it's just as simple as `token.connect(player).approve(other, totalAmount)`, then
+  `token.connect(other).transferFrom(player, other. totalAmount)`
+
+### Other levels on the way...
