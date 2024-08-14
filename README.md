@@ -32,6 +32,10 @@ pnpm it
 - repeat coin flip logic in the attacker contract
 - make 10 guesses, one per block
 
+### 4. Telephone. [Level](https://ethernaut.openzeppelin.com/level/4), solution: [contract](contracts/MyTelephoneAttack.sol), [test](test/04-telephone.ts)
+
+- tx.origin != msg.sender: call target contract through proxxy (attacker) contract
+
 ### 9. King. [Level](https://ethernaut.openzeppelin.com/level/9), solution: [contract](contracts/MyKingAttack.sol), [test](test/09-king.ts)
 
 - attacker contract should have no payable receive/fallback functions
