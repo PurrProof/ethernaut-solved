@@ -47,7 +47,13 @@ pnpm it
 - to vizualize level storage, install `sol2uml`, then run
   `sol2uml storage -d -u $RPC_NODE_URL -c Privacy -s $PRIVACY_INSTANCE_ADDRESS -o storage.svg ./Privacy.sol`
 
-### 13. GeteKeeperOne. [Level](https://ethernaut.openzeppelin.com/level/13), [solution](test/13-gatekeeper1.ts).
+### 13. GateKeeperOne. [Level](https://ethernaut.openzeppelin.com/level/13), [solution](contracts/MyGateKeeper1Attack.sol).
 
 - gasleft() may change because of compiler version and settings, so bruteforce
 - for code, use 2 lower bytes of tx/origin, and upper 32 bits should not be zero
+
+### 14. GateKeeperTwo. [Level](https://ethernaut.openzeppelin.com/level/14), [solution](contracts/MyGateKeeper2Attack.sol).
+
+- victim.enter(...) function should be called in attacker constructor; this way victim.extcodesize(attacker) will be
+  still zero
+- the idea behind \_gateKey construction is that val XOR (NOT val) => all bits set
