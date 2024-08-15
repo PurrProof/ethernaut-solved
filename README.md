@@ -36,7 +36,11 @@ pnpm it
 
 - tx.origin != msg.sender: call target contract through proxxy (attacker) contract
 
-### 9. King. [Level](https://ethernaut.openzeppelin.com/level/9), solution: [contract](contracts/MyKingAttack.sol), [test](test/09-king.ts)
+### 7. Force. [Level](https://ethernaut.openzeppelin.com/level/7), solution: [contract](contracts/MyTelephoneAttack.sol), [test](test/04-telephone.ts)
+
+- the EVM doesn't prevent self destructing contract from sending funds to either EOA or to SCA
+
+### 9. King. [Level](https://ethernaut.openzeppelin.com/level/9), solution: [contract](contracts/MyForceAttack.sol), [test](test/07-force.ts)
 
 - attacker contract should have no payable receive/fallback functions
 - send prize + 1 value from attacker contract to target contract
