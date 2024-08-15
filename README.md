@@ -36,9 +36,15 @@ pnpm it
 
 - tx.origin != msg.sender: call target contract through proxxy (attacker) contract
 
+### 5. Token. WIP (needs to be documented).
+
+### 6. Delegation. WIP (needs to be documented).
+
 ### 7. Force. [Level](https://ethernaut.openzeppelin.com/level/7), solution: [contract](contracts/MyTelephoneAttack.sol), [test](test/04-telephone.ts)
 
 - the EVM doesn't prevent self destructing contract from sending funds to either EOA or to SCA
+
+### 8. Vault. WIP (needs to be documented).
 
 ### 9. King. [Level](https://ethernaut.openzeppelin.com/level/9), solution: [contract](contracts/MyForceAttack.sol), [test](test/07-force.ts)
 
@@ -84,5 +90,10 @@ pnpm it
 
 - call second library, it will overwrite 0th slot in storage with address of fake library
 - call first library, faked by us: it will overwrite slots 0-2 in storage, where slot #2 contains owner address
+
+### 17. Recovery. [Level](https://ethernaut.openzeppelin.com/level/17), solution: [test](test/17-recovery.ts)
+
+- contract addresses are deterministic: `new address = keccak256(creatorAddress, nonce)`, where nonce starts from 0 for
+  EOAs, and from 1 for SCAs, in latter case nonce means number of spawned contracts
 
 ### Other levels on the way...
