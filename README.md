@@ -127,6 +127,8 @@ PUSH1 0x00  // offset
 RETURN      // offset, size => halt execution, return data (32 bytes here) from memory
 ```
 
+Proposed level description improvement: [pull-request](https://github.com/OpenZeppelin/ethernaut/pull/750)
+
 ### 19. Alien Codex. [Level](https://ethernaut.openzeppelin.com/level/19), solution: [contract](contracts/MyAlienCodexAttack.sol)
 
 - investigate storage structure, using contract ABI and getStorage() function
