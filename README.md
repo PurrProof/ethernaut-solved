@@ -96,4 +96,25 @@ pnpm it
 - contract addresses are deterministic: `new address = keccak256(creatorAddress, nonce)`, where nonce starts from 0 for
   EOAs, and from 1 for SCAs, in latter case nonce means number of spawned contracts
 
+### 18. Magic Number. [Level](https://ethernaut.openzeppelin.com/level/18), solution: [1 raw bytecode](test/18-magicnumber.ts), [2 assembly](contracts/MyMagicNumAttack.sol)
+
+```asm
+// init code
+PUSH1 0x0a  // sizecopy, 10 bytes (decimal) is size of runtime code
+PUSH1 0x0c  // offset, 13 bytes (decimal) is size of init code
+PUSH1 0x00  // destOffset, target offset in memory
+CODECOPY    // destOffset, offset, sizecopy => runtime bytecode into memory
+PUSH1 0x0a  // size, 10 bytes (decimal) is size of runtime code
+PUSH1 0x00  // offset
+RETURN      // offset, size => halt execution, return data from memory
+
+// run time code
+PUSH1 0x2a  // value, 42 decimal
+PUSH1 0x00  // offset
+MSTORE      // offset, value => save word (32 bytes) to memory
+PUSH1 0x20  // size
+PUSH1 0x00  // offset
+RETURN      // offset, size => halt execution, return data (32 bytes here) from memory
+```
+
 ### Other levels on the way...
