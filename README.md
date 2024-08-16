@@ -10,6 +10,16 @@ cp .env.example .env
 pnpm it
 ```
 
+## Useful snippets
+
+```
+const prov = new _ethers.providers.Web3Provider(window.ethereum);
+await prov.getStorageAt(await contract.address,2)
+sol2uml storage -d -u $RPC_NODE_URL -c Privacy -s $PRIVACY_INSTANCE_ADDRESS -o storage.svg ./Privacy.sol
+cast send -i -r $RPC_NODE_URL --create $BYTECODE
+cast call -i -r $RPC_NODE_URL $ADDRESS $FUNCTION_ID
+```
+
 ## Solutions
 
 ### 0. Instance. [Level](https://ethernaut.openzeppelin.com/level/0), solution: [test](test/00-instance.ts)
@@ -116,5 +126,17 @@ PUSH1 0x20  // size
 PUSH1 0x00  // offset
 RETURN      // offset, size => halt execution, return data (32 bytes here) from memory
 ```
+
+### 19. Alien Codex. [Level](https://ethernaut.openzeppelin.com/level/19), solution: [contract](contracts/MyAlienCodexAttack.sol)
+
+- investigate storage structure, using contract ABI and getStorage() function
+- optionally, using contract.record(\_content), check that codex[] takes slot#1, it should store array length
+- see
+  [0.6.0 breaking changes](https://docs.soliditylang.org/en/v0.8.26/060-breaking-changes.html#explicitness-requirements),
+  `Member-access to length of arrays is now always read-only, even for storage arrays. It is no longer possible to resize storage arrays by assigning a new value to their length.`
+- underflow array length by calling retract()
+- calculate shift to address slot #0, it equals to type(uint256).max - keccak256(1) + 1, where keccak256(1) is address
+  of slot, containing 0th array element
+- fill the slot #0 with new owner address with help of revise(i, owner)
 
 ### Other levels on the way...
