@@ -141,4 +141,16 @@ Proposed level description improvement: [pull-request](https://github.com/OpenZe
   of slot, containing 0th array element
 - fill the slot #0 with new owner address with help of revise(i, owner)
 
+### 20. Denial. [Level](https://ethernaut.openzeppelin.com/level/20), solution: [contract](contracts/MyDenialAttack.sol), [test](test/20-denial.ts)
+
+Attack vector:
+
+- the "partner" contract spend all available to it gas (63/64 of total in parent call) in infinite cycle
+- the rest 1/64 gas is not enough to make .transfer()
+
+How to avoid:
+
+- limit gas for external calls, like .call{gas:N}("")
+- follow Check-Effects-Iteration pattern
+
 ### Other levels on the way...
