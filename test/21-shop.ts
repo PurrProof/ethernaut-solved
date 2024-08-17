@@ -6,7 +6,7 @@ import { MyShopAttack, MyShopAttack__factory } from "../typechain-types";
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("21. Shop level", function () {
+describe("21. Shop", function () {
   let context: FixtureContext;
   let level: FixtureLevel<ShopFactory, Shop>;
 

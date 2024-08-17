@@ -163,4 +163,21 @@ How to avoid:
 
 - don't trust external/untrusted contracts output
 
+### 21. Dex. [Level](https://ethernaut.openzeppelin.com/level/22), solution: [test](test/22-dex.ts)
+
+Current DEX works this way:
+
+| User action     | DexT1 | DexT2 | UserT1 | UserT2 |
+| --------------- | ----- | ----- | ------ | ------ |
+| **Initial**     | 100   | 10    | 10     | 10     |
+| **10 T1 -> T2** | 110   | 90    | 0      | 20     |
+| **20 T2 -> T1** | 86    | 110   | 24     | 0      |
+| **24 T1 -> T2** | 110   | 80    | 0      | 30     |
+| **30 T2 -> T1** | 69    | 110   | 41     | 0      |
+| **41 T1 -> T2** | 110   | 45    | 0      | 65     |
+| **45 T2 -> T1** | 0     | 90    | 110    | 20     |
+
+I'd rather use
+[constant product formula](https://docs.uniswap.org/contracts/v2/concepts/protocol-overview/how-uniswap-works)
+
 ### Other levels on the way...
