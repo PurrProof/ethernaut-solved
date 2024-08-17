@@ -153,4 +153,14 @@ How to avoid:
 - limit gas for external calls, like .call{gas:N}("")
 - follow Check-Effects-Iteration pattern
 
+### 21. Shop. [Level](https://ethernaut.openzeppelin.com/level/21), solution: [contract](contracts/MyShopAttack.sol), [test](test/21-shop.ts)
+
+Attack vector:
+
+- attacker contract fake its responses depending on target contract state
+
+How to avoid:
+
+- don't trust external/untrusted contracts output
+
 ### Other levels on the way...
