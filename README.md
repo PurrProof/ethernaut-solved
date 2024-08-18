@@ -180,7 +180,7 @@ Current DEX works this way:
 I'd rather use
 [constant product formula](https://docs.uniswap.org/contracts/v2/concepts/protocol-overview/how-uniswap-works)
 
-### 23. DexTwo. [Level](https://ethernaut.openzeppelin.com/level/23), solution: [contract](contracts/MyDex2Attack.sol), [test](test/23-dex2.ts)
+### 23. Dex Two. [Level](https://ethernaut.openzeppelin.com/level/23), solution: [contract](contracts/MyDex2Attack.sol), [test](test/23-dex2.ts)
 
 Attack vector:
 
@@ -192,5 +192,24 @@ How to avoid:
 
 P.S. I made _too honest_ fake tokens ;) The original solution is more brutal — their fake tokens only have the
 **balanceOf** and **transferFrom** functions, which return just the necessary minimum.
+
+### 24. Puzzle Wallet. [Level](https://ethernaut.openzeppelin.com/level/24), solution: [contract](contracts/MyPuzzleWalletAttack.sol), [test](test/24-puzzlewallet.ts)
+
+1. **Attack Vector**
+
+   - **Storage Collision Exploit:**  
+     Exploits a storage collision between the proxy's `pendingAdmin` and the implementation's `owner` to gain control.
+   - **Recursive Multicall Exploit:**  
+     Uses `multicall` with a reentrant-like call to drain funds by calling `deposit` twice in one transaction.
+   - **Admin Privilege Hijack:**  
+     Overwrites the proxy's `admin` by setting the `maxBalance`, due to storage collision, to take control.
+
+2. **How to Avoid**
+   - **Proper Storage Layout:**  
+     Use reserved storage slots to avoid collisions between proxy and implementation contracts.
+   - **Secure Delegatecalls:**  
+     Only delegatecall to trusted and verified implementations with compatible storage.
+   - **Restrict Function Combinations:**  
+     Limit `multicall` or prevent repeated calls to functions like `deposit` within the same transaction.
 
 ### Other levels on the way...
