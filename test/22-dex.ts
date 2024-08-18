@@ -12,7 +12,7 @@ import {
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("21. Dex", function () {
+describe("22. Dex", function () {
   let context: FixtureContext;
   let level: FixtureLevel<DexFactory, Dex>;
 
