@@ -184,11 +184,11 @@ I'd rather use
 
 Attack vector:
 
-- attacker swap self-managed tokens for tokens, registered in the dex
+- attacker swaps self-managed tokens for tokens, registered in the dex
 
 How to avoid:
 
-- don't allow to swap not registered tokens
+- don't allow to swap not registered / not trusted tokens
 
 P.S. I made _too honest_ fake tokens ;) The original solution is more brutal — their fake tokens only have the
 **balanceOf** and **transferFrom** functions, which return just the necessary minimum.
