@@ -212,4 +212,18 @@ P.S. I made _too honest_ fake tokens ;) The original solution is more brutal —
    - **Restrict Function Combinations:**  
      Limit `multicall` or prevent repeated calls to functions like `deposit` within the same transaction.
 
+### 25. Motorbike. [Level](https://ethernaut.openzeppelin.com/level/25), solution: [contract](contracts/MyMotorbikeAttack.sol), [test](test/25-motorbike.ts)
+
+Attack vector
+
+- Take upgrader role of implementation contract (Engine). It's possible because initialize() function is not disabled
+  and opened to everyone.
+- Change Engine's implementation to attacker contract, then call attacker's method, which contains selfdestruct()
+
+How to avoid
+
+- disable initializer in Engine contract
+
+P.S. [discussion](https://github.com/OpenZeppelin/ethernaut/issues/701)
+
 ### Other levels on the way...
