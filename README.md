@@ -226,4 +226,6 @@ How to avoid
 
 P.S. [discussion](https://github.com/OpenZeppelin/ethernaut/issues/701)
 
+### 26. Double Entry Point. [Level](https://ethernaut.openzeppelin.com/level/26), solution: [detection bot](contracts/MyDoubleEntryDetectionBot.sol), [test](test/26-doubleentry.ts)
+
 ### Other levels on the way...
