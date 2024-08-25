@@ -240,4 +240,10 @@ How to avoid
 
 - assume, that errors may be bubbled up by any contract down in the chain
 
+### 28. Gate Keeper Three. [Level](https://ethernaut.openzeppelin.com/level/28), solution: [contract](contracts/MyGateKeeperThreeAttack.sol), [test](test/28-gatekeeper3.ts)
+
+Attack vector
+
+- use block.timestamp as password; it's same for all internal transactions within transaction
+
 ### Other levels on the way...

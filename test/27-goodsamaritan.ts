@@ -1,6 +1,5 @@
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
-import hre from "hardhat";
 
 import {
   Coin,
@@ -16,7 +15,7 @@ import { MyGoodSamaritanAttack, MyGoodSamaritanAttack__factory } from "../typech
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("25. Good Samaritan", function () {
+describe("27. Good Samaritan", function () {
   let context: FixtureContext;
   let level: FixtureLevel<GoodSamaritanFactory, GoodSamaritan>;
   const TOTAL = 10 ** 6;
