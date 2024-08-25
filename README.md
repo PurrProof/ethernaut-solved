@@ -228,4 +228,16 @@ P.S. [discussion](https://github.com/OpenZeppelin/ethernaut/issues/701)
 
 ### 26. Double Entry Point. [Level](https://ethernaut.openzeppelin.com/level/26), solution: [detection bot](contracts/MyDoubleEntryDetectionBot.sol), [test](test/26-doubleentry.ts)
 
+### 27. Good Samaritan. [Level](https://ethernaut.openzeppelin.com/level/27), solution: [contract](contracts/MyGoodSamaritanAttack.sol), [test](test/27-goodsamaritan.ts)
+
+Attack vector
+
+- revert with NotEnoughBalance() error in the attacker's contract notify() function
+- error will be bubbled up to GoodSamaritan contract, where rest of balance will be transfered to attacker contract
+- don't revert, if transfer exceeds 10 coins
+
+How to avoid
+
+- assume, that errors may be bubbled up by any contract down in the chain
+
 ### Other levels on the way...
