@@ -46,7 +46,16 @@ cast call -i -r $RPC_NODE_URL $ADDRESS $FUNCTION_ID
 
 - tx.origin != msg.sender: call target contract through proxxy (attacker) contract
 
-### 5. Token. WIP (needs to be documented).
+### Token. [Level](https://ethernaut.openzeppelin.com/level/5), solution: [test](test/05-token.ts)
+
+Attack vector
+
+- underflow in the transfer() function
+
+How to avoid:
+
+- use solidity 0.8.0+, there is a checked arithmetics by default
+- use libraries like the SafeMath for the older solidity versions
 
 ### 6. Delegation. WIP (needs to be documented).
 
