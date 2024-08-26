@@ -7,7 +7,7 @@ import { SwappableTokenTwo, SwappableTokenTwo__factory } from "../typechain-type
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("21. DexTwo", function () {
+describe("23. DexTwo", function () {
   let context: FixtureContext;
   let level: FixtureLevel<DexTwoFactory, DexTwo>;
 
