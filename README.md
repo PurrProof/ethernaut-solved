@@ -46,18 +46,30 @@ cast call -i -r $RPC_NODE_URL $ADDRESS $FUNCTION_ID
 
 - tx.origin != msg.sender: call target contract through proxxy (attacker) contract
 
-### Token. [Level](https://ethernaut.openzeppelin.com/level/5), solution: [test](test/05-token.ts)
+### 5. Token. [Level](https://ethernaut.openzeppelin.com/level/5), solution: [test](test/05-token.ts)
 
-Attack vector
+**Attack vector**
 
 - underflow in the transfer() function
 
-How to avoid:
+**How to avoid**
 
 - use solidity 0.8.0+, there is a checked arithmetics by default
 - use libraries like the SafeMath for the older solidity versions
 
-### 6. Delegation. WIP (needs to be documented).
+### 6. Delegation. [Level](https://ethernaut.openzeppelin.com/level/6), solution: [test](test/06-delegation.ts.ts)
+
+**Attack vector**
+
+Send `payload=Delegate.pwn.selector` to the `Delegation` contract. The call triggers the `fallback()` function, which
+delegates execution to the `Delegate` contract, where the owner storage variable is changed to `msg.sender`. Since the
+call is executed in the context of `Delegation`, its `owner` storage variable, located in the 0th slot, is the one that
+gets changed.
+
+**How to avoid**
+
+Secure the `fallback` function with access control or avoid using `delegatecall` in it. Explicitly define functions to
+prevent unauthorized state changes.
 
 ### 7. Force. [Level](https://ethernaut.openzeppelin.com/level/7), solution: [contract](contracts/MyTelephoneAttack.sol), [test](test/04-telephone.ts)
 
@@ -152,23 +164,23 @@ Proposed level description improvement: [pull-request](https://github.com/OpenZe
 
 ### 20. Denial. [Level](https://ethernaut.openzeppelin.com/level/20), solution: [contract](contracts/MyDenialAttack.sol), [test](test/20-denial.ts)
 
-Attack vector:
+**Attack vector**
 
 - the "partner" contract spend all available to it gas (63/64 of total in parent call) in infinite cycle
 - the rest 1/64 gas is not enough to make .transfer()
 
-How to avoid:
+**How to avoid**
 
 - limit gas for external calls, like .call{gas:N}("")
 - follow Check-Effects-Iteration pattern
 
 ### 21. Shop. [Level](https://ethernaut.openzeppelin.com/level/21), solution: [contract](contracts/MyShopAttack.sol), [test](test/21-shop.ts)
 
-Attack vector:
+**Attack vector**
 
 - attacker contract fake its responses depending on target contract state
 
-How to avoid:
+**How to avoid**
 
 - don't trust external/untrusted contracts output
 
@@ -191,11 +203,11 @@ I'd rather use
 
 ### 23. Dex Two. [Level](https://ethernaut.openzeppelin.com/level/23), solution: [contract](contracts/MyDex2Attack.sol), [test](test/23-dex2.ts)
 
-Attack vector:
+**Attack vector**
 
 - attacker swaps self-managed tokens for tokens, registered in the dex
 
-How to avoid:
+**How to avoid**
 
 - don't allow to swap not registered / not trusted tokens
 
@@ -206,30 +218,30 @@ P.S. I made _too honest_ fake tokens ;) The original solution is more brutal —
 
 1. **Attack Vector**
 
-   - **Storage Collision Exploit:**  
+   - **Storage Collision Exploit**  
      Exploits a storage collision between the proxy's `pendingAdmin` and the implementation's `owner` to gain control.
-   - **Recursive Multicall Exploit:**  
+   - **Recursive Multicall Exploit**  
      Uses `multicall` with a reentrant-like call to drain funds by calling `deposit` twice in one transaction.
-   - **Admin Privilege Hijack:**  
+   - **Admin Privilege Hijack**  
      Overwrites the proxy's `admin` by setting the `maxBalance`, due to storage collision, to take control.
 
 2. **How to Avoid**
-   - **Proper Storage Layout:**  
+   - **Proper Storage Layout**  
      Use reserved storage slots to avoid collisions between proxy and implementation contracts.
-   - **Secure Delegatecalls:**  
+   - **Secure Delegatecalls**  
      Only delegatecall to trusted and verified implementations with compatible storage.
-   - **Restrict Function Combinations:**  
+   - **Restrict Function Combinations**  
      Limit `multicall` or prevent repeated calls to functions like `deposit` within the same transaction.
 
 ### 25. Motorbike. [Level](https://ethernaut.openzeppelin.com/level/25), solution: [contract](contracts/MyMotorbikeAttack.sol), [test](test/25-motorbike.ts)
 
-Attack vector
+**Attack vector**
 
 - Take upgrader role of implementation contract (Engine). It's possible because initialize() function is not disabled
   and opened to everyone.
 - Change Engine's implementation to attacker contract, then call attacker's method, which contains selfdestruct()
 
-How to avoid
+**How to avoid**
 
 - disable initializer in Engine contract
 
@@ -239,25 +251,25 @@ P.S. [discussion](https://github.com/OpenZeppelin/ethernaut/issues/701)
 
 ### 27. Good Samaritan. [Level](https://ethernaut.openzeppelin.com/level/27), solution: [contract](contracts/MyGoodSamaritanAttack.sol), [test](test/27-goodsamaritan.ts)
 
-Attack vector
+**Attack vector**
 
 - revert with NotEnoughBalance() error in the attacker's contract notify() function
 - error will be bubbled up to GoodSamaritan contract, where rest of balance will be transfered to attacker contract
 - don't revert, if transfer exceeds 10 coins
 
-How to avoid
+**How to avoid**
 
 - assume, that errors may be bubbled up by any contract down in the chain
 
 ### 28. Gate Keeper Three. [Level](https://ethernaut.openzeppelin.com/level/28), solution: [contract](contracts/MyGateKeeperThreeAttack.sol), [test](test/28-gatekeeper3.ts)
 
-Attack vector
+**Attack vector**
 
 - use block.timestamp as password; it's same for all internal transactions within transaction
 
 ### 29. Switch. [Level](https://ethernaut.openzeppelin.com/level/29), solution: [contract](contracts/MySwitchAttack.sol), [test](test/29-switch.ts)
 
-Attack vector
+**Attack vector**
 
 Manually created calldata with non-standard variable offset.
 
@@ -281,7 +293,7 @@ We'll construct calldata manually:
     0x76227e12: data itself, Switch.turnSwitchOn.selector
 ```
 
-How to avoid
+**How to avoid**
 
 - don't hardcode variable offsets when dealing with calldata at low level
 

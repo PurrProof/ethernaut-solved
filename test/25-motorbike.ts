@@ -1,12 +1,10 @@
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
-import { expect } from "chai";
 import hre from "hardhat";
 
 import { Motorbike, MotorbikeFactory, MotorbikeFactory__factory, Motorbike__factory } from "../typechain-types";
 import { MyMotorbikeAttack, MyMotorbikeAttack__factory } from "../typechain-types";
 import { Engine, Engine__factory } from "../typechain-types";
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
-import { completeLevel } from "./helpers";
 
 describe("25. Motor", function () {
   let context: FixtureContext;
