@@ -285,4 +285,20 @@ How to avoid
 
 - don't hardcode variable offsets when dealing with calldata at low level
 
+### 30. Higher Order. [Level](https://ethernaut.openzeppelin.com/level/30), solution: [contract](contracts/MyHigherOrderAttack.sol), [test](test/30)
+
+https://docs.soliditylang.org/en/latest/security-considerations.html#minor-details
+
+> Types that do not occupy the full 32 bytes might contain “dirty higher order bits”. This is especially important if
+> you access msg.data - it poses a malleability risk: You can craft transactions that call a function f(uint8 x) with a
+> raw byte argument of 0xff000001 and with 0x00000001. Both are fed to the contract and both will look like the number 1
+> as far as x is concerned, but msg.data will be different, so if you use keccak256(msg.data) for anything, you will get
+> different results.
+
+https://github.com/ethereum/solidity/issues/14766 (closed)
+
+> This no longer seems to be true in Solidity >= 0.8. ABI decoding now reverts when it encounters dirty high-order bits.
+> Can you please confirm this is no longer an issue and add a comment to the documentation (or remove this section), or
+> clarify why this is still an issue in Solidity >= 0.8?
+
 ### Other levels on the way...
