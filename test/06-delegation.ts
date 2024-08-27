@@ -7,7 +7,7 @@ import { Delegation, DelegationFactory, DelegationFactory__factory, Delegation__
 import { FixtureContext, FixtureLevel, deployEssentials, deployLevel } from "./fixtures";
 import { completeLevel } from "./helpers";
 
-describe("06. Delegation", function () {
+describe("6. Delegation", function () {
   let context: FixtureContext;
   let level: FixtureLevel<DelegationFactory, Delegation>;
 

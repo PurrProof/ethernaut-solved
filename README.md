@@ -57,7 +57,7 @@ cast call -i -r $RPC_NODE_URL $ADDRESS $FUNCTION_ID
 - use solidity 0.8.0+, there is a checked arithmetics by default
 - use libraries like the SafeMath for the older solidity versions
 
-### 6. Delegation. [Level](https://ethernaut.openzeppelin.com/level/6), solution: [test](test/06-delegation.ts.ts)
+### 6. Delegation. [Level](https://ethernaut.openzeppelin.com/level/6), solution: [test](test/06-delegation.ts)
 
 **Attack vector**
 
@@ -75,7 +75,9 @@ prevent unauthorized state changes.
 
 - the EVM doesn't prevent self destructing contract from sending funds to either EOA or to SCA
 
-### 8. Vault. WIP (needs to be documented).
+### 8. Vault. [Level](https://ethernaut.openzeppelin.com/level/8), solution: [test](test/08-vault.ts)
+
+- read password from contract storage (1st slot)
 
 ### 9. King. [Level](https://ethernaut.openzeppelin.com/level/9), solution: [contract](contracts/MyForceAttack.sol), [test](test/07-force.ts)
 
