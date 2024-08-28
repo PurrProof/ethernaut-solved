@@ -299,7 +299,7 @@ We'll construct calldata manually:
 
 - don't hardcode variable offsets when dealing with calldata at low level
 
-### 30. Higher Order. [Level](https://ethernaut.openzeppelin.com/level/30), solution: [contract](contracts/MyHigherOrderAttack.sol), [test](test/30)
+### 30. Higher Order. [Level](https://ethernaut.openzeppelin.com/level/30), solution: [contract](contracts/MyHigherOrderAttack.sol), [test](test/30-higherorder.ts)
 
 https://docs.soliditylang.org/en/latest/security-considerations.html#minor-details
 
@@ -315,4 +315,14 @@ https://github.com/ethereum/solidity/issues/14766 (closed)
 > Can you please confirm this is no longer an issue and add a comment to the documentation (or remove this section), or
 > clarify why this is still an issue in Solidity >= 0.8?
 
-### Other levels on the way...
+### 31. Stake [Level](https://ethernaut.openzeppelin.com/level/31), solution: [test](test/31-stake.ts)
+
+**Attack Vector**
+
+Exploit a bug in `Stake.StakeWETH()`: the return value of the low-level `WETH.transfer()` call isn't checked, though it
+can return `false`.
+
+**How to Avoid**
+
+- Always check return values of external `ERC-20` token calls.
+- Use OpenZeppelin's `SafeERC20` wrappers for safer `ERC20` function calls.
