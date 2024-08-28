@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
-import "hardhat/console.sol";
-
 interface IGateKeeperThree {
     function construct0r() external;
     function createTrick() external;
@@ -10,14 +8,12 @@ interface IGateKeeperThree {
     function enter() external;
 }
 
-interface ITrick {
-    //function checkPassword(uint256 _password) external returns (bool);
+interface IAttack {
+    function enter(address target) external payable;
 }
 
-contract MyGateKeeperThreeAttack {
-    constructor() {}
-
-    function enter(address target) external payable {
+contract MyGateKeeperThreeAttack is IAttack {
+    function enter(address target) external payable override {
         // target contract
         IGateKeeperThree keeper = IGateKeeperThree(target);
 

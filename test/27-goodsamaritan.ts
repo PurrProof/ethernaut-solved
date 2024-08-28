@@ -30,7 +30,7 @@ describe("27. Good Samaritan", function () {
   it("should be attacked successfully through attacker contract", async function () {
     // deploy attacker contract
     const attackFactory: MyGoodSamaritanAttack__factory = new MyGoodSamaritanAttack__factory(context.player);
-    const attackContract: MyGoodSamaritanAttack = await attackFactory.deploy(level.instance);
+    const attackContract: MyGoodSamaritanAttack = await attackFactory.deploy();
     await attackContract.waitForDeployment();
 
     const coin: Coin = Coin__factory.connect(await level.instance.coin(), context.player);

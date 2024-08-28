@@ -5,8 +5,8 @@ interface IPuzzleProxy {
     function proposeNewAdmin(address _newAdmin) external;
     function approveNewAdmin(address _expectedAdmin) external;
     function upgradeTo(address _newImplementation) external;
-    function pendingAdmin() external view returns (address);
-    function admin() external view returns (address);
+    function pendingAdmin() external view returns (address pendingAdm);
+    function admin() external view returns (address currentAdm);
 }
 
 interface IPuzzleImplementation {
@@ -16,10 +16,10 @@ interface IPuzzleImplementation {
     function deposit() external payable;
     function execute(address to, uint256 value, bytes calldata data) external payable;
     function multicall(bytes[] calldata data) external payable;
-    function owner() external view returns (address);
-    function maxBalance() external view returns (uint256);
-    function whitelisted(address addr) external view returns (bool);
-    function balances(address addr) external view returns (uint256);
+    function owner() external view returns (address curOwner);
+    function maxBalance() external view returns (uint256 maxBal);
+    function whitelisted(address addr) external view returns (bool isAddrInWL);
+    function balances(address addr) external view returns (uint256 addrBal);
 }
 
 interface IPuzzleWallet is IPuzzleProxy, IPuzzleImplementation {}

@@ -7,7 +7,7 @@ interface INotifyable {
 }
 
 interface IDonater {
-    function requestDonation() external returns (bool);
+    function requestDonation() external;
 }
 
 contract MyGoodSamaritanAttack is INotifyable {

